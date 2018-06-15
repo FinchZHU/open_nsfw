@@ -58,12 +58,7 @@ class NsfwModel(CaffeAiUcloudModel):
 			_, _, h, w = self.model.blobs['data'].data.shape
 			h_off = int(max((H - h) / 2, 0))
 			w_off = int(max((W - w) / 2, 0))
-			
-			print ("h:" + str(type(h)))
-			print ("w:" + str(type(w)))
-			print ("h_off:" + str(type(h_off)))
-			print ("w_off:" + str(type(w_off)))
-			
+
 			crop = image[h_off:h_off + h, w_off:w_off + w, :]
 			transformed_image = caffe_transformer.preprocess('data', crop)
 			transformed_image.shape = (1,) + transformed_image.shape
